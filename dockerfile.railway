@@ -30,7 +30,7 @@ ENV ORIGIN=$ORIGIN_ARG
 workdir /app
 copy --from=builder /app/build build/
 copy --from=builder /app/package.json .
-expose 8080
+expose 3000
 
 CMD [  "node", "build" ]
 
