@@ -20,15 +20,17 @@ RUN pnpm run build
 from node:20-alpine as deployer
 
 arg ORIGIN_ARG
+# arg PORT_ARG
 
 run if [ -z $ORIGIN_ARG]; then echo "ORIGIN_ARG must be set!"; exit 1; fi
+run if [ -z $PORT_ARG]; then echo "PORT_ARG must be set!"; exit 1; fi
 
 ENV ORIGIN=$ORIGIN_ARG
 
 workdir /app
 copy --from=builder /app/build build/
 copy --from=builder /app/package.json .
-expose 3000
+expose 8080
 
 CMD [  "node", "build" ]
 
