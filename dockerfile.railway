@@ -3,13 +3,10 @@ FROM node:20-alpine AS builder
 
 # mandatory ARGs that must be passed when running `docker build` command.
 arg MONGO_URI_ARG
-arg ORIGIN_ARG
 
 run if [ -z $MONGO_URI_ARG]; then echo "MONGO_URI_ARG must be set!"; exit 1; fi
-run if [ -z $ORIGIN_ARG]; then echo "ORIGIN_ARG must be set!"; exit 1; fi
 
 ENV MONGO_URI=$MONGO_URI_ARG
-ENV ORIGIN=$ORIGIN_ARG
 
 WORKDIR /app
 COPY package*.json .
@@ -21,9 +18,22 @@ RUN pnpm run build
 
 # RUN
 from node:20-alpine as deployer
+
+arg ORIGIN_ARG
+
+run if [ -z $ORIGIN_ARG]; then echo "ORIGIN_ARG must be set!"; exit 1; fi
+
+ENV ORIGIN=$ORIGIN_ARG
+
 workdir /app
 copy --from=builder /app/build build/
 copy --from=builder /app/package.json .
 expose 3000
-CMD [ "node", "build" ]
 
+CMD [  "node", "build" ]
+
+# CLI build command example
+# docker build --build-arg MONGO_URI_ARG="mongodb://host.docker.internal:27017" --build-arg ORIGIN_ARG="http://localhost:8080" -f dockerfile.railway -t svelte_docker .                         
+
+# CLI run command example
+# docker run -p 8080:3000 svelte_docker
