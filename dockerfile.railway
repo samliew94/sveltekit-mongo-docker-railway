@@ -23,7 +23,7 @@ arg ORIGIN_ARG
 # arg PORT_ARG
 
 run if [ -z $ORIGIN_ARG]; then echo "ORIGIN_ARG must be set!"; exit 1; fi
-run if [ -z $PORT_ARG]; then echo "PORT_ARG must be set!"; exit 1; fi
+# run if [ -z $PORT_ARG]; then echo "PORT_ARG must be set!"; exit 1; fi
 
 ENV ORIGIN=$ORIGIN_ARG
 
