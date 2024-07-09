@@ -1,8 +1,10 @@
-# SvelteKit + Mongo + Docker
+# SvelteKit + Mongo + Docker + Railway
 
 This web app is built for self-learning purposes.
 
-# Stack details
+App is deployed with Railway via Dockerfile.
+
+# Stack Details
 
 Node
 
