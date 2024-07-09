@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.playwrite-gb-s-foo {
+    font-family: "Playwrite GB S", cursive;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}
+
+@layer base {
+    body {
+        @apply playwrite-gb-s-foo bg-black;
+    }
+
+    h1 {
+        @apply text-4xl font-[400] uppercase text-white;
+    }
+    h2 {
+        @apply text-2xl font-[300] uppercase text-white;
+    }
+
+    p {
+        @apply text-lg font-[100] text-white;
+    }
+
+    input {
+        @apply text-xl text-black w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-300;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        @apply py-2 px-4 bg-primary text-white uppercase text-4xl border;
+    }
+
+    .btn-delete {
+        @apply py-2 px-4 bg-error text-white uppercase text-4xl border;
+    }
+
+    .p-label {
+        @apply text-xl font-[200] text-white uppercase;
+    }
+
+    .text-error {
+        @apply text-xs font-[200] text-red-500;
+    }
+}
